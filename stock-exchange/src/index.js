@@ -1,5 +1,5 @@
 import ReactDOM  from "react-dom";
-import ReactComponent from "./classes/UpdateClockComponent";
+import ReactComponent from "./classes/ArrowFunctionComponents";
 
 var userInfo = {
     name: "Mayank",
