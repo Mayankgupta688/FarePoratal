@@ -1,5 +1,5 @@
 import ReactDOM  from "react-dom";
-import ReactComponent from "./hooks/DisplayTimeComponent";
+import ReactComponent from "./classes/UpdateClockComponent";
 
 var userInfo = {
     name: "Mayank",
@@ -13,6 +13,6 @@ var userInfo = {
 
 ReactDOM.createRoot(document.getElementById("root")).render((
     <section>
-        <ReactComponent></ReactComponent>
+        <ReactComponent userName="TechnoFunnel"></ReactComponent>
     </section>
 ))
