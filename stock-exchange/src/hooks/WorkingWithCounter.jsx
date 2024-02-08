@@ -4,20 +4,28 @@ export default function WorkingWithCounter() {
 
     var [counter, setCounter] = useState(0);
     
+    useEffect(() => {
+        debugger;
+        // Runs of Re-rendering and Initial Rendering as well.
+        console.log("Hello All, The value has Incremented")
+    })
+    
+    useEffect(() => {
+        debugger;
+        // Runs of Re-rendering and Initial Rendering as well.
+        console.log("Hello All, The value has Incremented - Empty")
+        
+        setInterval(() => {
+            incrementCounter();
+        }, 1000)
+        
+    }, [])
+    
     function incrementCounter() {
-        
-        // setCounter(counter + 1)
-        
         setCounter((initialCounterValue) => {
             return initialCounterValue + 1
         })
     }
-    
-    setTimeout(() => {
-        setCounter((initialCounterValue) => {
-            return initialCounterValue + 1
-        })
-    }, 1000)
     
     return (
         <div>

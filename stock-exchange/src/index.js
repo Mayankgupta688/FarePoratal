@@ -1,5 +1,5 @@
 import ReactDOM  from "react-dom";
-import ReactComponent from "./hooks/WorkingWithCounter";
+import ReactComponent from "./hooks/InputFormComponent";
 
 var userInfo = {
     name: "Mayank",
