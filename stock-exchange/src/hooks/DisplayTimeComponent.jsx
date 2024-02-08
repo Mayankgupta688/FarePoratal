@@ -1,4 +1,5 @@
 // https://prod.liveshare.vsengsaas.visualstudio.com/join?97546200056E89E17F26B9F2FB54DCDD602E
+
 export default function DisplayTimeComponent() {
     function returnCurrentTime() {
         return `${new Date().getHours()} : ${new Date().getMinutes()} : ${new Date().getSeconds()}`;
