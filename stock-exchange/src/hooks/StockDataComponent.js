@@ -1,5 +1,6 @@
 // https://priceapi.moneycontrol.com/pricefeed/nse/equitycash/SBI
 // https://priceapi.moneycontrol.com/pricefeed/nse/equitycash/NLC 
+
 import { useState } from "react";
 import StockData from "./StockData";
 
