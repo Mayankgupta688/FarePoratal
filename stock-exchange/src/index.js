@@ -1,5 +1,5 @@
 import ReactDOM  from "react-dom";
-import ReactComponent from "./hooks/InputFormComponent";
+import ReactComponent from "./appHooks/CustomHooks";
 
 var userInfo = {
     name: "Mayank",
@@ -11,8 +11,4 @@ var userInfo = {
     country: "India"
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render((
-    <section>
-        <ReactComponent></ReactComponent>
-    </section>
-))
+ReactDOM.createRoot(document.getElementById("root")).render(<ReactComponent></ReactComponent>)
