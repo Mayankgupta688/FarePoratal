@@ -1,5 +1,5 @@
 import ReactDOM  from "react-dom";
-import ReactComponent from "./appHooks/CustomHooks";
+import ReactComponent from "./otherHooks/usingUseMemo";
 
 var userInfo = {
     name: "Mayank",

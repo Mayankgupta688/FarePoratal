@@ -1,34 +1,54 @@
 // https://prod.liveshare.vsengsaas.visualstudio.com/join?29D7F396E6672D97350535316C0C3CEE960D
 
-import details from "./employees.json";
 import { useState, useEffect } from "react";
+import AddEmployee from "./AddEmployee";
+import EmployeeInfo from "./EmployeeInfo";
+import FilterEmployeeList from "./FilterEmployeeList";
+import Axios from "axios";
 
 export default function EmployeeDetails() {
     
-    var [employeeList, setEmployeeList] = useState(details);
+    var [employeeList, setEmployeeList] = useState([]);
+    var [filteredList, setFilteredList] = useState([]);
     
-    function deleteEmployee(employeeId) {
-        alert("Deleted: " + employeeId)
+    useEffect(() => {
+        updateEmployeeOnScreen();
+    }, [])
+    
+    function updateEmployeeOnScreen() {
+        Axios.get("http://localhost:3000/employees").then((response) => {
+            setEmployeeList(response.data)
+            setFilteredList(response.data)
+        })
     }
     
-    function deleteFunction(employeeId) {
-        alert("Delete Clicked")
+    function deleteEmployee(employeeId) {
+        Axios.delete("http://localhost:3000/employees/" + employeeId).then(() => {
+            alert("Employee with " + employeeId + " got deleted...");
+            updateEmployeeOnScreen();
+        });
+    }
+    
+    function filterEmployee(filterText) {
+        var filteredList = [];
+        if (filterText == "") {
+            filteredList = employeeList;
+        } else {
+            filteredList = employeeList.filter((employee) => {
+                return employee.name.indexOf(filterText) > -1;
+            })
+        }
+        setFilteredList(filteredList);
     }
     
     return (
-        
         <>
-            {employeeList.map((employee) => {
+            <h1>The List of Employee ({employeeList.length}) is given Below: </h1>
+            <FilterEmployeeList filterEmployee={filterEmployee}></FilterEmployeeList>
+            <AddEmployee updateEmployeeOnScreen={updateEmployeeOnScreen}></AddEmployee>
+            {filteredList.map((employee) => {
                 return (
-                    <div className="card" style={{ width: "18rem", display: "inline-block", margin: "10px", padding: "10px" }}>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRYWiJM9gMrv5z-T0IH7AIU0jk8NXRmTYhYGfpobi3ew&s" className="card-img-top" alt="Image" />
-                        <div className="card-body">
-                            <h5 className="card-title">{employee.name} { 1 + 1 }</h5>
-                            <p className="card-text">Employee Created On: {employee.createdAt}.</p>
-                            <input type="button" className="btn btn-primary" value="Delete" onClick={function () { deleteEmployee(employee.id) }} />
-                            <input type="button" className="btn btn-primary" value="Delete Function" onClick={deleteFunction} />
-                        </div>
-                    </div>
+                    <EmployeeInfo {...employee} deleteEmployee={deleteEmployee}></EmployeeInfo>
                 )
             })}
         </>
